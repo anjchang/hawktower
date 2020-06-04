@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>RWU Hawk Tower</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <link rel='icon' href='towericon.png' type='image/x-icon'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+    const maxRoom = 14;
+    var arr = [];
+
+    $(document).ready(function () {
+      // generate array
+      for (i = 1; i <= maxRoom; i++) {
+        arr.push(i);
+      }
+      // shuffle
+      shuffle(arr);
+      // add room based on shuffled arr values
+      arr.forEach(addRoom);
+    });
+
+    function shuffle(arr) {
+      for (var j, x, i = arr.length; i;
+        j = parseInt(Math.random() * i),
+        x = arr[--i], arr[i] = arr[j], arr[j] = x
+      );
+      return arr;
+    }
+
+    function addRoom(i) {
+      $("#wall").append('<img src="./rooms/room' + i + '.png" id="room' + i + '" onclick="popIntro(this);">');
+    }
+
+    function popIntro(target) {
+      // load intro text and popup intro dialog
+      $('#intro').html('<object type="text/html" data="./rooms/' + target.id + '.html" ></object>');
+      $('#intromodal').modal('show');
+    }
+  </script>
+</head>
+
+<img src="template.png" id="room0">
+
+<div id="contacts">
+  <p><a href="https://comm165.com/hawktower" target="_bl"><img alt="HawkTower" src="towericon.png"></a></p>
+  <!--
+  <p><a href="https://www.instagram.com/mitborderline/" target="_ig"><img alt="Instagram" src="https://image.flaticon.com/icons/svg/174/174855.svg"></a></p>
+  <a href="https://www.facebook.com/mitborderline/" target="_fb"><img alt="Facebook" src="https://image.flaticon.com/icons/svg/124/124010.svg"></a> -->
+</div>
+
+<div id="desc">
+  <h4>Hawk Tower: <span id="subHead">isolation, together.</span></h4>
+
+  <p>Trees connect many different animals together, and they can even connect a community in quarantine. This tree is made up of RWU hawk eyries, created by students at RWU.
+    Inspired by <a href="https://coronamaison.fun" target="_corona">Corona Maison</a> and <a href="http://tunnel.mit.edu">Tunnel66</a>
+    Hawk Tower is a place to gather and showcase the unique identities of the RWU community,
+    in lieu of physically being on campus at <a href="https://rwu.edu">RWU</a>.
+    Each hawk adds an eyrie, forming one connected tower towards the sky. <b>Click on a eyrie to learn more about the
+      artist!</b></p>
+
+  <b>To join Hawk Tower, read <a href="https://forms.gle/ppcuAmpfaxEYSbnX6" target="_submit">FAQ</a>,
+    download the <a href="./template.png" target="_template">template</a>,
+    and <a href="https://forms.gle/ppcuAmpfaxEYSbnX6" target="_submit">submit</a>.</b>
+  <br>
+  <!--
+  Made with love by <a href="https://arts.mit.edu/artists/the-borderline/#about-the-project" target="_borderline">MIT
+    Borderline</a>, the student group responsible for augmented reality murals in the tunnels under Building 66.
+  <br>-->
+  Contact: <a href="mailto:achang@g.rwu.edu?Subject=HawkTower" target="_mail">achang@g.rwu.edu</a>
+</div>
+
+<div id="wall"></div>
+
+<div class="modal fade" id="intromodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div id="intro"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>
